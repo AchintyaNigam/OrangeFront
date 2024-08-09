@@ -3,6 +3,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import login from "../../pocketbase"; 
 
 export default function Login() {
   const [username, setUsername] = useState<string>("");
@@ -13,23 +14,21 @@ export default function Login() {
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
+
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      if (!response.ok) {
+      const result = await login(username, password);
+      
+      // Check if the result has the expected structure
+      if (result && result.token) {
+        console.log("Login successful", result);
+        
+        // Redirect to another page after successful login
+        router.push("/dashboard");
+      } else {
         throw new Error("Invalid credentials");
       }
-      const data = await response.json();
-      console.log("Login successful", data);
-      // Redirect to another page after successful login
-      router.push("/chat");
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || "An error occurred during login");
     }
   };
 
