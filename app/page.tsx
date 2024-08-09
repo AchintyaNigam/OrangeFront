@@ -9,7 +9,7 @@ export default function Home() {
       <div className="relative w-full h-screen">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/background.png"
+            src="/background.svg"
             layout="fill"
             objectFit="fill"
             alt="Background"
