@@ -1,7 +1,7 @@
+"use-client";
 import Image from "next/image";
 import Link from "next/link";
 
-const handleGetStartedCLick = () => {};
 
 export default function Home() {
   return (
@@ -32,7 +32,7 @@ export default function Home() {
         <div className="absolute bottom-10 right-10">
           <Link href="/login" passHref>
             <button className="bg-slate-500 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-1000">
-              Get started
+              Get Started
             </button>
           </Link>
         </div>
