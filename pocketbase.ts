@@ -11,3 +11,12 @@ async function login(username: string, password: string) {
 }
 
 export default login
+
+
+export const fetchTasks = async () => {
+   
+       const records= await pb.collection('Tasks').getFullList({sort: '-created'});
+       return records;
+    
+   
+};
